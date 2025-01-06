@@ -125,8 +125,8 @@ namespace TodoApi
 {
     public partial class ToDoDbContext : DbContext
     {
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Item> Items { get; set; }
+        public virtual DbSet<User> user { get; set; }
+        public virtual DbSet<Item> item { get; set; }
 
         public ToDoDbContext(DbContextOptions<ToDoDbContext> options)
             : base(options)
@@ -139,7 +139,7 @@ namespace TodoApi
 
             try
             {
-                var connectionString = "Server=bd2ivxjpmx5a7gpoxc5j-mysql.services.clever-cloud.com;User=uyb9xnwwuyygrbpc;Password=crvceLArTRBtAmA8rhKG;Database=bd2ivxjpmx5a7gpoxc5j;";
+                var connectionString = "Server=bujkixbbtsdssxnmdyuu-mysql.services.clever-cloud.com;User=uftyv7t4ctoqb2rx;Password=tC6pwbqLIWAI1c7MSb88;Database=bujkixbbtsdssxnmdyuu;";
                 optionsBuilder.UseMySql(connectionString, Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.40-mysql"));
                 Console.WriteLine("Database connection success");
             }
@@ -177,18 +177,5 @@ namespace TodoApi
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 
-    // Example User class
-    public class User
-    {
-        public int Id { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-    }
-
-    // Example Item class
-    public class Item
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
+    
 }
