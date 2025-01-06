@@ -11,7 +11,7 @@ using TodoApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = "Server=bd2ivxjpmx5a7gpoxc5j-mysql.services.clever-cloud.com;User=uyb9xnwwuyygrbpc;Password=crvceLArTRBtAmA8rhKG;Database=bd2ivxjpmx5a7gpoxc5j;";
+var connectionString = "Server=bujkixbbtsdssxnmdyuu-mysql.services.clever-cloud.com;User=uftyv7t4ctoqb2rx;Password=tC6pwbqLIWAI1c7MSb88;Database=bujkixbbtsdssxnmdyuu;";
 
 
 
@@ -51,7 +51,7 @@ try
 //     )
 // );
 // Add the DbContext with the connection string
-builder.Services.AddDbContext<TodoDbContext>(options =>
+builder.Services.AddDbContext<ToDoDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 // builder.Services.AddDbContext<ToDoDbContext>(options =>

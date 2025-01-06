@@ -120,6 +120,7 @@
 // }
 using System;
 using Microsoft.EntityFrameworkCore;
+using TodoApi;
 
 namespace TodoApi
 {
@@ -132,6 +133,7 @@ namespace TodoApi
             : base(options)
         {
         }
+       
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -159,7 +161,7 @@ namespace TodoApi
             modelBuilder.Entity<Item>(entity =>
             {
                 entity.HasKey(e => e.Id).HasName("PRIMARY");
-                entity.ToTable("items");
+                entity.ToTable("Items");
                 entity.Property(e => e.Name).HasMaxLength(100);
             });
 
