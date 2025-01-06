@@ -125,8 +125,8 @@ namespace TodoApi
 {
     public partial class ToDoDbContext : DbContext
     {
-        public virtual DbSet<User> user { get; set; }
-        public virtual DbSet<Item> item { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Item> Items { get; set; }
 
         public ToDoDbContext(DbContextOptions<ToDoDbContext> options)
             : base(options)
@@ -177,5 +177,5 @@ namespace TodoApi
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 
-    
+   
 }
