@@ -1,5 +1,3 @@
-
-
 # ToDo API
 
 A minimal API for managing a to-do list, allowing users to perform CRUD operations (Create, Read, Update, Delete) on tasks. The API is secured using **JWT Authentication**, and **CORS** is enabled to allow cross-origin requests.
