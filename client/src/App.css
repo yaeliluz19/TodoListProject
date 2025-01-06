@@ -1,0 +1,16 @@
+.new-todo {
+    margin-right: 10px;
+  }
+  
+  .add-todo-btn {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .add-todo-btn:hover {
+    background-color: #45a049;
+  }
+  
