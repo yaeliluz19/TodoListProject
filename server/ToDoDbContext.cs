@@ -168,7 +168,7 @@ namespace TodoApi
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasKey(e => e.Id).HasName("PRIMARY");
-                entity.ToTable("users");
+                entity.ToTable("Users");
                 entity.Property(e => e.Username).HasMaxLength(50).IsRequired();
                 entity.Property(e => e.Password).HasMaxLength(255).IsRequired();
             });
