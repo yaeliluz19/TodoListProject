@@ -193,7 +193,7 @@ app.MapPut("/{id}", [Microsoft.AspNetCore.Authorization.Authorize] async (int id
 });
 
 // Route to Delete a Task
-app.MapDelete("/{id}", [Microsoft.AspNetCore.Authorization.Authorize] async (int id, ToDoDbContext dbContext) =>
+app.MapDelete("/{id}", [Microsoft.AspNetCore.Authorization.Authorize]   async (int id, ToDoDbContext dbContext) =>
 {
     var item = await dbContext.Items.FindAsync(id);
     if (item == null)
