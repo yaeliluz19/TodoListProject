@@ -115,7 +115,7 @@
 import axios from 'axios';
 
 // הגדרת ה-baseURL של ה-API
-axios.defaults.baseURL = 'http://localhost:5206/';  // עדכן לכתובת ה-API שלך
+axios.defaults.baseURL = 'https://localhost:44337/';  // עדכן לכתובת ה-API שלך
 
 // הגדרת headers ברירת מחדל
 axios.defaults.headers['Content-Type'] = 'application/json';
@@ -139,7 +139,7 @@ if (token) {
   axios.defaults.headers['Authorization'] = `Bearer ${token}`;
 }
 
-const apiUrl = "http://localhost:5206/";
+const apiUrl = "https://localhost:44337/";
 
 export default {
   getTasks: async () => {

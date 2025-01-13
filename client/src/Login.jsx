@@ -12,7 +12,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5206/login', {
+      const response = await axios.post('https://localhost:44337/login', {
         username,
         password,
       });

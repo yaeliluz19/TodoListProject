@@ -186,10 +186,13 @@ app.MapPut("/{id}", [Microsoft.AspNetCore.Authorization.Authorize] async (int id
         return Results.NotFound("Item not found.");
     }
 
-    if (!string.IsNullOrEmpty(updatedItem.Name)) item.Name = updatedItem.Name;
-    item.IsComplete = updatedItem.IsComplete;
-    await dbContext.SaveChangesAsync();
+    if (!string.IsNullOrEmpty(updatedItem.Name))
+        item.Name = updatedItem.Name;
+        item.IsComplete = updatedItem.IsComplete;
+        await dbContext.SaveChangesAsync();
+  
     return Results.Json(item);
+    
 });
 
 // Route to Delete a Task
