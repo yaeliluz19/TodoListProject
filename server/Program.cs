@@ -1,6 +1,3 @@
-
-
-
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -11,11 +8,7 @@ using TodoApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = "Server=bujkixbbtsdssxnmdyuu-mysql.services.clever-cloud.com;User=uftyv7t4ctoqb2rx;Password=tC6pwbqLIWAI1c7MSb88;Database=bujkixbbtsdssxnmdyuu;";
-
-
-
-
+//var connectionString = "Server=bujkixbbtsdssxnmdyuu-mysql.services.clever-cloud.com;User=uftyv7t4ctoqb2rx;Password=tC6pwbqLIWAI1c7MSb88;Database=bujkixbbtsdssxnmdyuu;";
 // Add services to the container
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -33,7 +26,7 @@ builder.Services.AddCors(options =>
 
 // Get the connection string from app configuration
 
-// var connectionString = builder.Configuration.GetConnectionString("ToDoDB");
+ var connectionString = builder.Configuration.GetConnectionString("ToDoDB");
 
 
 
@@ -54,8 +47,7 @@ try
 builder.Services.AddDbContext<ToDoDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
-// builder.Services.AddDbContext<ToDoDbContext>(options =>
-//     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
 }
 catch (Exception ex)
 {
@@ -178,7 +170,7 @@ app.MapGet("/", /*[Microsoft.AspNetCore.Authorization.Authorize]*/ async (ToDoDb
 });
 
 // Route to Add New Task
-app.MapPost("/", [Microsoft.AspNetCore.Authorization.Authorize] async (ToDoDbContext dbContext, Item newItem) =>
+app.MapPost("/",/* [Microsoft.AspNetCore.Authorization.Authorize]*/ async (ToDoDbContext dbContext, Item newItem) =>
 {
     dbContext.Items.Add(newItem);
     await dbContext.SaveChangesAsync();
@@ -186,7 +178,7 @@ app.MapPost("/", [Microsoft.AspNetCore.Authorization.Authorize] async (ToDoDbCon
 });
 
 // Route to Update a Task
-app.MapPut("/{id}", [Microsoft.AspNetCore.Authorization.Authorize] async (int id, ToDoDbContext dbContext, Item updatedItem) =>
+app.MapPut("/{id}", /*[Microsoft.AspNetCore.Authorization.Authorize]*/ async (int id, ToDoDbContext dbContext, Item updatedItem) =>
 {
     var item = await dbContext.Items.FindAsync(id);
     if (item == null)
@@ -201,7 +193,7 @@ app.MapPut("/{id}", [Microsoft.AspNetCore.Authorization.Authorize] async (int id
 });
 
 // Route to Delete a Task
-app.MapDelete("/{id}", [Microsoft.AspNetCore.Authorization.Authorize] async (int id, ToDoDbContext dbContext) =>
+app.MapDelete("/{id}", /*[Microsoft.AspNetCore.Authorization.Authorize]*/ async (int id, ToDoDbContext dbContext) =>
 {
     var item = await dbContext.Items.FindAsync(id);
     if (item == null)
