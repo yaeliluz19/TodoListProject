@@ -1,25 +1,7 @@
 
 import axios from 'axios';
-/*olddddddddddddddddddddddddddddddddddd */
-/* 
-axios.defaults.baseURL = 'https://localhost:44337/';  // עדכן לכתובת ה-API שלך
-axios.defaults.headers['Content-Type'] = 'application/json';
-axios.interceptors.response.use(
-  (response) => response, 
-  (error) => {
-    console.error('API Error:', error.response || error.message);
-    if (error.response && error.response.status === 401) {
-      window.location.href = '/login'; // לדף התחברות
-    }
-    return Promise.reject(error); 
-  }
-);
-const token = sessionStorage.getItem('token');
-if (token) {
-  axios.defaults.headers['Authorization'] = `Bearer ${token}`;
-}
-*/
-axios.defaults.baseURL = 'https://localhost:44337/';
+
+axios.defaults.baseURL = "https://todolistprojectserver.onrender.com/";
 axios.defaults.headers['Content-Type'] = 'application/json';
 
 axios.interceptors.request.use((config) => {
@@ -46,7 +28,8 @@ axios.interceptors.response.use(
 
 
 
-const apiUrl = "https://localhost:44337/";
+const apiUrl ="https://todolistprojectserver.onrender.com/"
+//console.log(process.env.VARIABLE_NAME);
 
 export default {
   getTasks: async () => {
