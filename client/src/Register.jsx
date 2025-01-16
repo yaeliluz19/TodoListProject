@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+const base_URL=process.env.REACT_APP_API_BASE_URL;
+const createURL = (path) => `${base_URL}${path}`;
 const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -12,12 +13,10 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      await axios.post(process.env.APIֹ_URL+"/register", {
+      await axios.post(createURL("register"), {
         username,
         password,
       });
-
-      // After successful registration, navigate to the login page
       navigate('/login');
     } catch (error) {
       setError('Failed to register, please try again.');

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+const base_URL=process.env.REACT_APP_API_BASE_URL;
+const createURL = (path) => `${base_URL}${path}`;
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -10,17 +12,12 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await axios.post("https://todolistprojectserver.onrender.com/login", {
+      const response = await axios.post(createURL("login"), {
         username,
         password,
       });
-
-      // Save the JWT token in localStorage
       sessionStorage.setItem('token', response.data.token);
-
-      // Redirect to the homepage
       navigate('/');
     } catch (error) {
       setError('Invalid username or password.');

@@ -1,7 +1,6 @@
-
 import axios from 'axios';
 
-axios.defaults.baseURL = "https://todolistprojectserver.onrender.com/";
+axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL;
 axios.defaults.headers['Content-Type'] = 'application/json';
 
 axios.interceptors.request.use((config) => {
@@ -25,10 +24,7 @@ axios.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
-
-
-const apiUrl ="https://todolistprojectserver.onrender.com/"
+const apiUrl =process.env.REACT_APP_API_BASE_URL;
 //console.log(process.env.VARIABLE_NAME);
 
 export default {
@@ -47,7 +43,6 @@ export default {
       name: name,
       isComplete: false
     };
-
     try {
       await axios.post(`${apiUrl}`, newTask);  // Send task data to the server
     } catch (error) {
