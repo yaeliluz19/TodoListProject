@@ -3,27 +3,44 @@ import axios from 'axios';
 axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL;
 axios.defaults.headers['Content-Type'] = 'application/json';
 
-axios.interceptors.request.use((config) => {
-
-  const token = sessionStorage.getItem('token');
-  if (token) {
-    config.headers['Authorization'] = `Bearer ${token}`;
-  }
-  return config;
-}, (error) => {
-  return Promise.reject(error);
-});
-axios.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    console.error('API Error:', error.response || error.message);
-    if (error.response && error.response.status === 401) {
-      sessionStorage.removeItem('token');
-      window.location.href = '/login';
+// Interceptor לבקשות
+axios.interceptors.request.use(
+  (config) => {
+    const token = sessionStorage.getItem('token');
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
     }
+    return config;
+  },
+  (error) => {
     return Promise.reject(error);
   }
 );
+
+// Interceptor לתשובות
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    // בדיקת שגיאה משרת
+    if (error.response) {
+      const status = error.response.status;
+
+      // טיפול ב-401 בצורה שקטה
+      if (status === 401) {
+        alert("please sign in")
+        sessionStorage.removeItem('token'); // הסרת הטוקן אם קיים
+        window.location.href = '/login'; // הפניה לדף login
+        return Promise.resolve(); // מונע את המשך טיפול השגיאה
+      }
+    }
+
+    // הדפסת שגיאות אחרות ל-console
+    console.error('API Error:', error.response || error.message);
+
+    return Promise.reject(error); // המשך הטיפול בשגיאה
+  }
+);
+
 const apiUrl =process.env.REACT_APP_API_BASE_URL;
 //console.log(process.env.VARIABLE_NAME);
 
