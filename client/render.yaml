@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: todolist-client
+    env: static
+    buildCommand: npm run build
+    startCommand: npm start
+    staticPublishPath: build
+    routes:
+      - source: /.*
+        destination: /index.html
